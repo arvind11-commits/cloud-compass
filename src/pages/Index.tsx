@@ -3,6 +3,7 @@ import { Layout } from '@/components/layout/Layout';
 import { ProgressRing } from '@/components/home/ProgressRing';
 import { StreakCounter } from '@/components/home/StreakCounter';
 import { StatCard } from '@/components/home/StatCard';
+import { TodoList } from '@/components/home/TodoList';
 import { Button } from '@/components/ui/button';
 import { useRoadmapStore } from '@/hooks/useRoadmapStore';
 import { Calendar, Map, BookOpen, Target, CheckCircle2, Trophy } from 'lucide-react';
@@ -109,6 +110,11 @@ const Index = () => {
               <span>Daily Log</span>
             </Link>
           </Button>
+        </section>
+
+        {/* Todo List */}
+        <section className="animate-fade-in" style={{ animationDelay: '0.5s' }}>
+          <TodoList />
         </section>
       </div>
     </Layout>
