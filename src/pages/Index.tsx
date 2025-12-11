@@ -6,10 +6,15 @@ import { StatCard } from '@/components/home/StatCard';
 import { TodoList } from '@/components/home/TodoList';
 import { Button } from '@/components/ui/button';
 import { useRoadmapStore } from '@/hooks/useRoadmapStore';
-import { Calendar, Map, BookOpen, Target, CheckCircle2, Trophy } from 'lucide-react';
+import { Calendar, Map, BookOpen, Target, CheckCircle2, Trophy, LogOut } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-const Index = () => {
+interface IndexProps {
+  user: { email: string; name: string };
+  onLogout: () => void;
+}
+
+const Index = ({ user, onLogout }: IndexProps) => {
   const { calculateStats, getCurrentPhase, checkInToday, hasCheckedInToday } = useRoadmapStore();
   const { toast } = useToast();
   const stats = calculateStats();
@@ -35,7 +40,17 @@ const Index = () => {
     <Layout>
       <div className="space-y-8">
         {/* Hero Section */}
-        <section className="text-center py-8 animate-fade-in">
+        <section className="text-center py-8 animate-fade-in relative">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={onLogout}
+            className="absolute right-0 top-0 text-muted-foreground hover:text-foreground"
+          >
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
+          <p className="text-sm text-muted-foreground mb-2">Welcome, {user.name}</p>
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
             My <span className="gradient-text">Cloud Computing</span> Journey
           </h1>
